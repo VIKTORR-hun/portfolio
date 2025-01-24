@@ -3,7 +3,7 @@ session_start();
 
 // Saját belépési adataid (ezeket állítsd be biztonságosan)
 $valid_username = 'admin';
-$valid_password = 'jelszo123';
+$valid_password = 'jezuskrisztus';
 
 // Felhasználónév és jelszó ellenőrzése
 if ($_POST['username'] == $valid_username && $_POST['password'] == $valid_password) {
