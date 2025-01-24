@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<script>
+  var password = prompt("Add meg a jelszót:");
+  if (password !== "titkosjelszo123") {
+    alert("Hozzáférés megtagadva!");
+    window.location.href = "index.html";
+  }
+</script>
+
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin felület</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Admin felület</h1>
+
+        <!-- Hírek hozzáadása -->
+        <div class="admin-section">
+            <h2>Hír hozzáadása</h2>
+            <input type="text" id="news-title" placeholder="Hír címe">
+            <textarea id="news-content" placeholder="Hír tartalma"></textarea>
+            <input type="text" id="news-author" placeholder="Szerző">
+            <input type="file" id="news-image">
+            <button onclick="addNews()">Hír hozzáadása</button>
+        </div>
+
+        <!-- Bibliai idézetek hozzáadása -->
+        <div class="admin-section">
+            <h2>Idézet hozzáadása</h2>
+            <input type="text" id="quote-text" placeholder="Idézet">
+            <input type="text" id="quote-author" placeholder="Szerző">
+            <button onclick="addQuote()">Idézet hozzáadása</button>
+        </div>
+
+        <!-- Mentett hírek és idézetek megjelenítése -->
+        <div class="admin-section">
+            <h2>Mentett hírek</h2>
+            <ul id="news-list"></ul>
+
+            <h2>Mentett idézetek</h2>
+            <ul id="quote-list"></ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>Minden jog fenntartva &copy; 2025</p>
+    </footer>
+
+    <script>
+        // Hír hozzáadása
+        function addNews() {
+            let title = document.getElementById('news-title').value;
+            let content = document.getElementById('news-content').value;
+            let author = document.getElementById('news-author').value;
+            let image = document.getElementById('news-image').files[0]?.name || 'default.jpg';
+
+            if (title && content && author) {
+                let news = JSON.parse(localStorage.getItem('news')) || [];
+                news.push({ title, content, author, image });
+                localStorage.setItem('news', JSON.stringify(news));
+                alert("Hír sikeresen hozzáadva!");
+                displayNews();
+            } else {
+                alert("Minden mezőt ki kell tölteni!");
+            }
+        }
+
+        // Idézet hozzáadása
+        function addQuote() {
+            let text = document.getElementById('quote-text').value;
+            let author = document.getElementById('quote-author').value;
+
+            if (text && author) {
+                let quotes = JSON.parse(localStorage.getItem('quotes')) || [];
+                quotes.push({ text, author });
+                localStorage.setItem('quotes', JSON.stringify(quotes));
+                alert("Idézet sikeresen hozzáadva!");
+                displayQuotes();
+            } else {
+                alert("Minden mezőt ki kell tölteni!");
+            }
+        }
+
+        // Hírek megjelenítése
+        function displayNews() {
+            let news = JSON.parse(localStorage.getItem('news')) || [];
+            let newsList = document.getElementById('news-list');
+            newsList.innerHTML = '';
+            news.forEach((item, index) => {
+                newsList.innerHTML += `<li><strong>${item.title}</strong> - ${item.author} <br>${item.content}<br><img src="images/${item.image}" width="100"><br><button onclick="deleteNews(${index})">Törlés</button></li>`;
+            });
+        }
+
+        // Idézetek megjelenítése
+        function displayQuotes() {
+            let quotes = JSON.parse(localStorage.getItem('quotes')) || [];
+            let quoteList = document.getElementById('quote-list');
+            quoteList.innerHTML = '';
+            quotes.forEach((item, index) => {
+                quoteList.innerHTML += `<li>"${item.text}" - ${item.author} <br><button onclick="deleteQuote(${index})">Törlés</button></li>`;
+            });
+        }
+
+        // Hír törlése
+        function deleteNews(index) {
+            let news = JSON.parse(localStorage.getItem('news'));
+            news.splice(index, 1);
+            localStorage.setItem('news', JSON.stringify(news));
+            displayNews();
+        }
+
+        // Idézet törlése
+        function deleteQuote(index) {
+            let quotes = JSON.parse(localStorage.getItem('quotes'));
+            quotes.splice(index, 1);
+            localStorage.setItem('quotes', JSON.stringify(quotes));
+            displayQuotes();
+        }
+
+        // Adatok betöltése az oldal megnyitásakor
+        window.onload = function () {
+            displayNews();
+            displayQuotes();
+        };
+    </script>
+
+</body>
+</html>
