@@ -1,0 +1,153 @@
+/* Általános beállítások */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: linear-gradient(to right, #4b6cb7, #182848);
+    color: white;
+    text-align: center;
+}
+
+/* Navigáció */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.navbar .logo {
+    font-size: 32px;
+    font-weight: bold;
+    color: #ffccff;
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+}
+
+.menu li {
+    margin: 0 20px;
+}
+
+.menu li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.menu li a:hover {
+    color: #ffccff;
+}
+
+/* Hero szekció */
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+    background: url('images/hero-bg.jpg') no-repeat center center/cover;
+    color: white;
+}
+
+.hero h1 {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.hero .btn {
+    padding: 15px 30px;
+    background: #6a5acd;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.hero .btn:hover {
+    background: #9370db;
+}
+
+/* Kereső mező */
+.search-section {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.search-section input {
+    width: 60%;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    color: black;
+}
+
+.search-section button {
+    padding: 15px 30px;
+    background: #6a5acd;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.search-section button:hover {
+    background: #9370db;
+}
+
+/* Központi tartalom */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.content-box {
+    padding: 40px;
+    width: 60%;
+    margin: 20px auto;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.3);
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+p, .news-list, .quote-list {
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+/* Lábléc */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
